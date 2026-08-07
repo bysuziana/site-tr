@@ -339,34 +339,15 @@ button, input, select, textarea {
 .link-seta--claro { color: var(--branco); border-bottom-color: #3d3d3d; }
 
 /* --------------------------- 6. Fotos ------------------------------ */
-/* Placeholders neutros: trocar por <img> quando houver fotografia. */
-.foto {
-  position: relative;
+.hero__midia img,
+.sobre__midia img {
+  display: block;
   width: 100%;
-  background:
-    linear-gradient(135deg, var(--cinza-100) 0%, var(--cinza-200) 45%, var(--cinza-300) 100%);
-  display: grid;
-  place-items: center;
-  overflow: hidden;
+  height: auto;
+  object-fit: cover;
 }
-.foto::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: repeating-linear-gradient(
-    135deg, rgba(255,255,255,0.5) 0 1px, transparent 1px 9px);
-  opacity: 0.5;
-}
-.foto__selo {
-  position: relative;
-  z-index: 1;
-  font-size: 0.75rem;
-  letter-spacing: 0.4em;
-  text-transform: uppercase;
-  color: var(--cinza-500);
-}
-.foto--retrato  { aspect-ratio: 3 / 4; }
-.foto--paisagem { aspect-ratio: 4 / 3; }
+.hero__midia img  { aspect-ratio: 3 / 4; }
+.sobre__midia img { aspect-ratio: 4 / 3; }
 
 /* ----------------------------- 7. Hero ----------------------------- */
 /* Ocupa a altura útil da janela e centraliza o conteúdo verticalmente,

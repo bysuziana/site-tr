@@ -117,6 +117,16 @@
       return ok;
     };
 
+    // Uma vez escolhida uma opção real, a opção "Selecione" some da lista
+    // para não poder ser escolhida de novo por engano.
+    formulario.querySelectorAll('select').forEach(function (select) {
+      select.addEventListener('change', function () {
+        if (select.value === '') return;
+        var placeholder = select.querySelector('option[value=""]');
+        if (placeholder) placeholder.disabled = true;
+      });
+    });
+
     var obrigatorios = formulario.querySelectorAll('[required]');
 
     obrigatorios.forEach(function (campo) {

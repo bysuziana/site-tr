@@ -35,26 +35,25 @@ Procure por `TODO` nos dois arquivos `.html`.
 4. **Imagem de compartilhamento** — criar `assets/og-image.jpg` em 1200×630 px.
    É a imagem que aparece quando alguém manda o link no WhatsApp.
 
-## Colocar as fotos
+## Trocar as fotos
 
-Hoje existem dois espaços reservados com um padrão cinza (hero e sobre). Para
-trocar por fotografia real, crie uma pasta `assets/` e substitua o bloco:
+As duas fotos da home ficam em `assets/`:
 
-```html
-<div class="foto foto--retrato" role="img" aria-label="...">
-  <span class="foto__selo">TR</span>
-</div>
-```
+| Arquivo | Onde aparece | Proporção esperada |
+|---|---|---|
+| `assets/hero.jpg` | Abertura da página (hero) | Retrato, 3:4 |
+| `assets/sobre.jpg` | Seção "Sobre" | Paisagem, 4:3 |
 
-por:
+Para trocar uma foto, basta **substituir o arquivo mantendo o mesmo nome** —
+não é preciso mexer em HTML ou CSS. Se a foto nova tiver proporção diferente da
+esperada, o `object-fit: cover` corta o excesso a partir do centro da imagem;
+quanto mais perto da proporção indicada acima, menor o corte.
 
-```html
-<img src="assets/hero.jpg" alt="Descrição curta do ambiente" loading="lazy">
-```
-
-Recomendações: fotos em preto e branco ou de baixa saturação para não brigar com
-a paleta; largura de 1600 px é suficiente; use `.webp` ou `.jpg` comprimido para
-o site carregar rápido.
+Recomendações: ambas as fotos atuais pesam ~5 MB cada, bem acima do ideal —
+antes de publicar, comprima com uma ferramenta como
+[Squoosh](https://squoosh.app) ou [TinyPNG](https://tinypng.com), buscando
+algo entre 200 e 400 KB por imagem, largura máxima de 2000 px. Isso reduz
+bastante o tempo de carregamento, principalmente no celular.
 
 ## Fazer o formulário chegar na caixa de entrada
 
