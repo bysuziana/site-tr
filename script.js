@@ -100,13 +100,16 @@
   });
 
   /* ---------------------- Formulário de contato --------------------
-     Sem backend: o envio monta um e-mail pré-preenchido no cliente do
-     usuário. Para receber direto na caixa de entrada, troque por um
-     serviço de formulário (Formspree, Netlify Forms, Basin) — veja o
-     README.
+     Sem backend: o envio monta a mensagem e entrega pelo WhatsApp
+     (canal principal, mais confiável — não depende de o visitante ter
+     um cliente de e-mail configurado) ou por e-mail, como alternativa.
+     Para receber direto num servidor, troque por um serviço de
+     formulário (Formspree, Netlify Forms, Basin) — veja o README.
      ---------------------------------------------------------------- */
-  var DESTINO = 'tr.dinteriores@gmail.com';
+  var DESTINO_EMAIL = 'tr.dinteriores@gmail.com';
+  var DESTINO_WHATSAPP = '5545991186057';
   var formulario = document.getElementById('formulario');
+  var botaoEmail = document.getElementById('enviar-email');
 
   if (formulario) {
     var mostrarErro = function (campo, mostrar) {
@@ -143,9 +146,7 @@
       });
     });
 
-    formulario.addEventListener('submit', function (e) {
-      e.preventDefault();
-
+    var validarFormulario = function () {
       var valido = true;
       var primeiroInvalido = null;
 
@@ -156,11 +157,11 @@
         }
       });
 
-      if (!valido) {
-        primeiroInvalido.focus();
-        return;
-      }
+      if (!valido) primeiroInvalido.focus();
+      return valido;
+    };
 
+    var montarResumo = function () {
       var d = new FormData(formulario);
       var v = function (campo) { return (d.get(campo) || '—').toString().trim() || '—'; };
 
@@ -189,9 +190,32 @@
         v('mensagem')
       ].join('\n');
 
-      window.location.href = 'mailto:' + DESTINO +
-        '?subject=' + encodeURIComponent(assunto) +
-        '&body='    + encodeURIComponent(corpo);
+      return { assunto: assunto, corpo: corpo };
+    };
+
+    // Canal principal: WhatsApp. Não depende de o visitante ter um
+    // aplicativo de e-mail configurado — abre numa aba nova, como os
+    // outros links externos do site.
+    formulario.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!validarFormulario()) return;
+
+      var resumo = montarResumo();
+      var texto = resumo.assunto + '\n\n' + resumo.corpo;
+      var url = 'https://wa.me/' + DESTINO_WHATSAPP + '?text=' + encodeURIComponent(texto);
+      window.open(url, '_blank', 'noopener');
     });
+
+    // Canal alternativo: e-mail, para quem preferir.
+    if (botaoEmail) {
+      botaoEmail.addEventListener('click', function () {
+        if (!validarFormulario()) return;
+
+        var resumo = montarResumo();
+        window.location.href = 'mailto:' + DESTINO_EMAIL +
+          '?subject=' + encodeURIComponent(resumo.assunto) +
+          '&body='    + encodeURIComponent(resumo.corpo);
+      });
+    }
   }
 })();

@@ -782,6 +782,19 @@ button, input, select, textarea {
 .formulario__nota a { color: var(--tinta); border-bottom: 1px solid var(--campo-linha); }
 .formulario__nota a:hover { border-color: var(--tinta); }
 
+.link-botao {
+  background: none;
+  border: 0;
+  border-bottom: 1px solid var(--campo-linha);
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  font-size: inherit;
+  color: var(--tinta);
+  cursor: pointer;
+}
+.link-botao:hover { border-color: var(--tinta); }
+
 /* ---------------------------- 14. Rodapé --------------------------- */
 .rodape {
   background: var(--preto);
