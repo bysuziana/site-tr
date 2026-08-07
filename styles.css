@@ -865,8 +865,13 @@ button, input, select, textarea {
   color: var(--branco);
   overflow-wrap: break-word; /* o e-mail é longo e a coluna, estreita */
 }
-.rodape__canal dd a { transition: color 200ms ease; }
-.rodape__canal dd a:hover { color: var(--cinza-400); }
+.rodape__canal dd a {
+  display: inline-block;
+  border-bottom: 1px solid #3d3d3d;
+  padding-bottom: 1px;
+  transition: color 200ms ease, border-color 200ms ease;
+}
+.rodape__canal dd a:hover { color: var(--cinza-400); border-color: var(--cinza-400); }
 
 /* -------------------------- 15. Revelação -------------------------- */
 .revelar {

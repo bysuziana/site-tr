@@ -5,6 +5,13 @@
 (function () {
   'use strict';
 
+  // Ao recarregar a página, volta ao topo (ou à âncora da URL) em vez de
+  // manter a posição de rolagem anterior — é o navegador quem restaura
+  // isso por padrão, e aqui desligamos essa restauração.
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
+
   var semMovimento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ------------------------- Ano do rodapé ------------------------- */
