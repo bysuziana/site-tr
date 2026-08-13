@@ -446,6 +446,7 @@ button, input, select, textarea {
   font-size: 0.9375rem;
   color: var(--cinza-700);
   line-height: 1.7;
+  text-align: justify;
 }
 
 /* --------------------------- 9. Produtos --------------------------- */
@@ -485,6 +486,7 @@ button, input, select, textarea {
   color: var(--cinza-300);
   margin: 0;
   flex: 1;
+  text-align: justify;
 }
 .produto .link-seta { align-self: flex-start; }
 
@@ -815,13 +817,12 @@ button, input, select, textarea {
   color: var(--cinza-400);
   margin: 0;
 }
+/* Mesma cor do texto ao redor, apenas sublinhado — sem realce no hover. */
 .rodape__autoria {
-  color: var(--cinza-400);
-  border-bottom: 1px solid #3d3d3d;
+  color: inherit;
+  border-bottom: 1px solid currentColor;
   padding-bottom: 1px;
-  transition: color 200ms ease, border-color 200ms ease;
 }
-.rodape__autoria:hover { color: var(--branco); border-color: var(--branco); }
 
 .rodape__nav {
   display: grid;
